@@ -1,13 +1,15 @@
 package example.vendingmachine;
 
+import example.vendingmachine.CoinSet.Coin;
+
 /**
  * @author myeongju.jung
  */
 public class VendingMachine {
     private int changeAmount;
 
-    public void putCoin(int coin) {
-        this.changeAmount += coin;
+    public void putCoin(Coin coin) {
+        this.changeAmount += coin.getMoney();
     }
 
     public int getChangeAmount() {

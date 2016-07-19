@@ -8,28 +8,46 @@ import java.util.List;
  * @author myeongju.jung
  */
 public class CoinSet {
+    public enum Coin {
+        KRW500(500), KRW100(100), KRW50(50), KRW10(10)
+        ;
+        private final int value;
+        Coin (int coin) {
+            this.value = coin;
+        }
+
+        private int moneyToCoin(List<Integer> coinSet, int money) {
+            while (money >= value) {
+                money -= value;
+                coinSet.add(value);
+            }
+            return money;
+        }
+
+        int getMoney() {
+            return value;
+        }
+    }
+
     private List<Integer> coinSet = new ArrayList<>();
 
-    public CoinSet() {
-    }
-
     public CoinSet(int money) {
-        money = moneyToCoin(money, 500);
-        money = moneyToCoin(money, 100);
-        money = moneyToCoin(money, 50);
-        money = moneyToCoin(money, 10);
-    }
-
-    private int moneyToCoin(int money, int coin) {
-        while (money >= coin) {
-            money -= coin;
-            coinSet.add(coin);
+        for (Coin coin : Coin.values()) {
+            money = coin.moneyToCoin(coinSet, money);
         }
-        return money;
+        if (money != 0) {
+            throw new RuntimeException("Not supported money : " + money);
+        }
     }
 
-    public void add(int coin) {
-        this.coinSet.add(coin);
+    public CoinSet(Coin... coins) {
+        for (Coin coin : coins) {
+            add(coin);
+        }
+    }
+
+    public void add(Coin coin) {
+        this.coinSet.add(coin.value);
     }
 
     @Override
