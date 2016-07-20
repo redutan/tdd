@@ -1,4 +1,4 @@
-package junit;
+package junit.theory;
 
 import lombok.Value;
 import org.junit.experimental.theories.DataPoint;

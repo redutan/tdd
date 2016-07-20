@@ -1,4 +1,4 @@
-package junit;
+package junit.theory;
 
 import org.junit.experimental.theories.ParameterSignature;
 import org.junit.experimental.theories.ParameterSupplier;
