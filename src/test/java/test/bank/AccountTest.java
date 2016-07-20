@@ -32,6 +32,7 @@ public class AccountTest {
     }
 
     @Test
+
     public void testDeposit() throws Exception {
         account.deposit(1000);
         assertEquals(11000, account.getBalance());
